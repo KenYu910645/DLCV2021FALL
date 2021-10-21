@@ -1,0 +1,1 @@
+python p1_src/predict.py --img_dir $1 --output_path $2 --ckpt_path ckpt_p1/p1-30.pth
