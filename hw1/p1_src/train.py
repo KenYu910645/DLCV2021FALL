@@ -16,8 +16,6 @@ CKPT_DIR = 'ckpt_p1/'
 NORM_MEAN = (0.485, 0.456, 0.406)
 NORM_STD  = (0.229, 0.224, 0.225)
 
-# Clear ckpt directory TODO
-
 train_transform = transforms.Compose([
     transforms.Resize(INPUT_SIZE),
     transforms.ColorJitter(),
@@ -34,13 +32,13 @@ valid_transform = transforms.Compose([
 ])
 
 # Use the torch dataloader to iterate through the dataset
-trainset = P1_DATA(root='p1_data/train_50', transform=train_transform)
-validset  = P1_DATA(root='p1_data/val_50', transform=valid_transform)
-trainset_loader  = DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_OF_WORKER)
+trainset  = P1_DATA(root='../p1_data/train_50', transform=train_transform)
+validset  = P1_DATA(root='../p1_data/val_50', transform=valid_transform)
+trainset_loader  = DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True,  num_workers=NUM_OF_WORKER)
 validset_loader  = DataLoader(validset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_OF_WORKER)
 
 print('# images in trainset:', len(trainset)) # Should print 22500
-print('# images in testset:', len(testset)) # Should print 2500
+print('# images in validset:', len(validset)) # Should print 2500
 
 # get some random training images
 dataiter = iter(trainset_loader)
@@ -110,4 +108,4 @@ def test(model):
 if __name__ == '__main__':
     vgg16_aug = Vgg16_Aug().to(device)
     summary(vgg16_aug, (3, INPUT_SIZE, INPUT_SIZE))
-    train_save(vgg16_aug, 100)
+    # train_save(vgg16_aug, 100)
