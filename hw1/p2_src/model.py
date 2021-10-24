@@ -27,7 +27,6 @@ class FCN32s(nn.Module):
         x = self.conv_up32(x)
         return x
 
-
 class UNet(nn.Module):
     def __init__(self):
         super(UNet, self).__init__()
@@ -57,12 +56,10 @@ class UNet(nn.Module):
         logits = self.outc(x)
         return logits
 
-
 class FCN8s(nn.Module):
     # https://zhuanlan.zhihu.com/p/73965733
     def __init__(self, pretrained_net):
         super().__init__()
-        self.n_class = n_class
         self.vgg16_feature = models.vgg16(pretrained=True).features
         self.relu = nn.ReLU(inplace=True)
         self.deconv1 = nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
@@ -75,7 +72,7 @@ class FCN8s(nn.Module):
         self.bn4 = nn.BatchNorm2d(64)
         self.deconv5 = nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
         self.bn5 = nn.BatchNorm2d(32)
-        self.classifier = nn.Conv2d(32, n_class, kernel_size=1)
+        self.classifier = nn.Conv2d(32, 7, kernel_size=1)
 
     def forward(self, x):
         output = self.pretrained_net(x)
@@ -94,10 +91,9 @@ class FCN8s(nn.Module):
 
         return score  # size=(N, n_class, x.H/1, x.W/1)
 
-
 if __name__ == '__main__':
     INPUT_SIZE = 512
-    # print(FCN32s())
-    # summary(FCN32s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
-    print(UNet())
-    summary(UNet().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+    print(FCN32s())
+    summary(FCN32s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+    # print(UNet())
+    # summary(UNet().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
