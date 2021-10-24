@@ -7,6 +7,9 @@ import copy # Avoid PIL compliant
 import torchvision.transforms as transforms
 N_CLASS = 7
 
+import torchvision.transforms.functional as TF
+import random
+
 def mask_target(im): # TODO WTF
     im = transforms.ToTensor()(im)
     im = 4 * im[0] + 2 * im[1] + 1 * im[2]
@@ -18,8 +21,8 @@ def mask_target(im): # TODO WTF
     target[im==1] = 4
     target[im==7] = 5
     target[im==0] = 6
-    target[im==4] = 6
-            
+    # target[im==4] = 6
+    # print(target)
     return target
 
 class P2_DATA(Dataset):
@@ -42,13 +45,31 @@ class P2_DATA(Dataset):
 
         # Load image to memory
         for fn in self.filenames:
+            print(fn)
             self.sate_img.append(copy.deepcopy(Image.open(fn[0])))
             self.mask_img.append(copy.deepcopy(Image.open(fn[1])))
 
+
+
     def __getitem__(self, index):
         """ Get a sample from the dataset """
+        # from memory 
         sate_img = self.sate_img[index]
         mask_img = self.mask_img[index]
+
+        # From Disk
+        # sate_img = Image.open(self.filenames[index][0])
+        # mask_img = Image.open(self.filenames[index][1])
+
+        if (True):
+            if random.random() > 0.5:
+                sate_img = TF.hflip(sate_img)
+                mask_img = TF.hflip(mask_img)
+
+            if random.random() > 0.5:
+                sate_img = TF.vflip(sate_img)
+                mask_img = TF.vflip(mask_img)
+
 
         if self.transform is not None:
             sate_img = self.transform(sate_img)

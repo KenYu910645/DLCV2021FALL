@@ -43,8 +43,6 @@ def mean_iou_score(pred, labels):
 
     return mean_iou
 
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-g', '--labels', help='ground truth masks directory', type=str)
