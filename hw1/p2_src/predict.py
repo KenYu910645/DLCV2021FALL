@@ -5,7 +5,7 @@ import torch
 from torch.backends import cudnn
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
-from model import FCN32s, UNet
+from model import FCN32s, UNet, FCN8s
 from PIL import Image
 from shutil import rmtree
 
@@ -28,8 +28,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--img_dir', type=str, default='../p2_data/validation/')
     parser.add_argument('--output_path', type=str, default='output/')
-    parser.add_argument('--model', default='UNet', type=str)
-    parser.add_argument('--ckpt_path', default='../ckpt_p2_unet/p2-0.pth', type=str)
+    parser.add_argument('--model', default='FCN8s', type=str)
+    parser.add_argument('--ckpt_path', default='../ckpt_p2_fcn32/p2-40.pth', type=str)
     config = parser.parse_args()
     print(config)
 
@@ -46,8 +46,7 @@ if __name__ == '__main__':
 
     # Load model
     if config.model == 'FCN8s':
-        pass
-        # model = FCN8s().to(device)
+        model = FCN8s().to(device)
     elif config.model == 'UNet':
         model = UNet().to(device)
     else:

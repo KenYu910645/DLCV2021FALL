@@ -1,8 +1,15 @@
-@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-0.pth
-@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-5.pth
-@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-10.pth
-@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-15.pth
-@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-20.pth
+@REM FCN8s
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-0.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-5.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-10.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-15.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-20.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-25.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-30.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-35.pth
+@REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2_fcn8s/p2-40.pth
+
+@REM UNet
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-25.pth
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-30.pth
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-35.pth
@@ -18,13 +25,15 @@
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-85.pth
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-90.pth
 @REM python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model UNet --ckpt_path ../ckpt_p2_unet/p2-95.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-0.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-5.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-10.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-15.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-20.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-25.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-30.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-35.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-40.pth
-python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_unet/p1-45.pth
+
+@REM FCN32s
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-0.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-5.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-10.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-15.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-20.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-25.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-30.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-35.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-40.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN32s --ckpt_path ../ckpt_p2_fcn32s/p2-45.pth

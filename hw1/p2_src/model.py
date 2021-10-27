@@ -28,6 +28,7 @@ class FCN32s(nn.Module):
         return x
 
 class UNet(nn.Module):
+    # Reference https://github.com/milesial/Pytorch-UNet
     def __init__(self):
         super(UNet, self).__init__()
         bilinear=True
@@ -57,8 +58,8 @@ class UNet(nn.Module):
         return logits
 
 class FCN8s(nn.Module):
-    # https://zhuanlan.zhihu.com/p/73965733
-    def __init__(self, pretrained_net):
+    # Reference https://zhuanlan.zhihu.com/p/73965733
+    def __init__(self):
         super().__init__()
         self.vgg16_feature = models.vgg16(pretrained=True).features
         self.relu = nn.ReLU(inplace=True)
@@ -75,15 +76,16 @@ class FCN8s(nn.Module):
         self.classifier = nn.Conv2d(32, 7, kernel_size=1)
 
     def forward(self, x):
-        output = self.pretrained_net(x)
-        x5 = output['x5']  # size=(N, 512, x.H/32, x.W/32)
-        x4 = output['x4']  # size=(N, 512, x.H/16, x.W/16)
-        x3 = output['x3']  # size=(N, 256, x.H/8,  x.W/8)
+        # features = self.vgg16_feature(x)
 
-        score = self.relu(self.deconv1(x5))  # size=(N, 512, x.H/16, x.W/16)
-        score = self.bn1(score + x4)  # element-wise add, size=(N, 512, x.H/16, x.W/16)
+        x_8  = self.vgg16_feature[:17](x)  # size=(7, 256, x.H/8,  x.W/8)
+        x_16 = self.vgg16_feature[17:24](x_8)  # size=(7, 512, x.H/16, x.W/16)
+        x_32 = self.vgg16_feature[24:](x_16)  # size=(7, 512, x.H/32, x.W/32)
+        
+        score = self.relu(self.deconv1(x_32))  # size=(N, 512, x.H/16, x.W/16)
+        score = self.bn1(score + x_16)  # element-wise add, size=(N, 512, x.H/16, x.W/16)
         score = self.relu(self.deconv2(score))  # size=(N, 256, x.H/8, x.W/8)
-        score = self.bn2(score + x3)  # element-wise add, size=(N, 256, x.H/8, x.W/8)
+        score = self.bn2(score + x_8)  # element-wise add, size=(N, 256, x.H/8, x.W/8)
         score = self.bn3(self.relu(self.deconv3(score)))  # size=(N, 128, x.H/4, x.W/4)
         score = self.bn4(self.relu(self.deconv4(score)))  # size=(N, 64, x.H/2, x.W/2)
         score = self.bn5(self.relu(self.deconv5(score)))  # size=(N, 32, x.H, x.W)
@@ -93,7 +95,9 @@ class FCN8s(nn.Module):
 
 if __name__ == '__main__':
     INPUT_SIZE = 512
-    print(FCN32s())
-    summary(FCN32s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+    # print(FCN32s())
+    # summary(FCN32s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
     # print(UNet())
     # summary(UNet().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+    print(FCN8s())
+    summary(FCN8s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
