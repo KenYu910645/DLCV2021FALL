@@ -12,7 +12,7 @@ import random
 INPUT_SIZE = 224
 NORM_MEAN = (0.485, 0.456, 0.406)
 NORM_STD  = (0.229, 0.224, 0.225)
-TSNE = True
+TSNE = False
 if TSNE:
     from sklearn import manifold
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--img_dir',     type=str, default='../p1_data/val_50/')
     parser.add_argument('--output_path', type=str, default='./')
-    parser.add_argument('--ckpt_path',   type=str,)
+    parser.add_argument('--ckpt_path',   type=str, default='../ckpt_p1/p1-0.pth')
     config = parser.parse_args()
     print(config)
 
@@ -73,16 +73,16 @@ if __name__ == '__main__':
                     feature_array.append(feature_dic['features'].to("cpu").numpy()[0])
                     label_array.append(int(fn.split('/')[-1].split('_')[0]))
                 
-                if pred.item() == int(fn.split('/')[-1].split('_')[0]): # Debug
+                # if pred.item() == int(fn.split('/')[-1].split('_')[0]): # Debug
+                if pred.item() == int(os.path.split(fn)[1].split('_')[0]): # Debug
                     correct += 1
     
-    feature_array = np.array(feature_array)
-    label_array = np.array(label_array)
-
-    print(feature_array)
-    print(feature_array.shape)
-    print(label_array)
-    print(label_array.shape)
+    # feature_array = np.array(feature_array)
+    # label_array = np.array(label_array)
+    # print(feature_array)
+    # print(feature_array.shape)
+    # print(label_array)
+    # print(label_array.shape)
     print("Acurracy = " + str(correct / len(filenames))) # Debug
 
     if TSNE:
