@@ -1,0 +1,11 @@
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-0.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-10.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-20.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-30.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-40.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-50.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-60.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-70.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-80.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-90.pth
+python ./predict.py --img_dir ../p2_data/validation/ --output_path output/ --model FCN8s --ckpt_path ../ckpt_p2/p2-99.pth

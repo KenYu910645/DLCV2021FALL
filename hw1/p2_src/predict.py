@@ -11,6 +11,7 @@ from shutil import rmtree
 
 NORM_MEAN = (0.485, 0.456, 0.406)
 NORM_STD  = (0.229, 0.224, 0.225)
+DEVICE = 'cuda:1'
 EVAL = True # If you wanna use mean_iou_evaluate.py to evaluate
 
 MASK = {
@@ -41,7 +42,7 @@ if __name__ == '__main__':
 
     # Get device
     use_cuda = torch.cuda.is_available()
-    device = torch.device('cuda' if use_cuda else 'cpu')
+    device = torch.device(DEVICE)
     print('Device used:', device)
 
     # Load model
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     model.eval()
     with torch.no_grad():
         for fn in filenames:
-            ImageID = fn.split('\\')[-1].split('_')[0]
+            ImageID = os.path.split(fn)[1].split('_')[0]
             output_filename = os.path.join(config.output_path, '{}_mask.png'.format(ImageID))  
             x = Image.open(fn)
             x = transform(x)

@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torchvision.models as models
-from torchsummary import summary
+# from torchsummary import summary
 
 class Vgg16_Aug(nn.Module):
     def __init__(self):
@@ -12,7 +12,7 @@ class Vgg16_Aug(nn.Module):
         x = self.vgg16(x)
         return x
 
-if __name__ == '__main__':
-    INPUT_SIZE = 512
-    print(Vgg16_Aug())
-    summary(Vgg16_Aug().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+# if __name__ == '__main__':
+#     INPUT_SIZE = 512
+#     print(Vgg16_Aug())
+#     summary(Vgg16_Aug().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))

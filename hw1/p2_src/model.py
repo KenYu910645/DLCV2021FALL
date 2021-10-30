@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torchvision.models as models
-from torchsummary import summary
+# from torchsummary import summary
 from unet_parts import DoubleConv, Down, Up, OutConv
 
 class FCN32s(nn.Module):
@@ -100,4 +100,4 @@ if __name__ == '__main__':
     # print(UNet())
     # summary(UNet().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
     print(FCN8s())
-    summary(FCN8s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))
+    # summary(FCN8s().to("cuda"), (3, INPUT_SIZE, INPUT_SIZE))

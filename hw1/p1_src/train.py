@@ -4,7 +4,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-from torchsummary import summary
+# from torchsummary import summary
 from vgg16_aug import Vgg16_Aug
 from dataset import P1_DATA
 
@@ -12,10 +12,10 @@ N_CLASS = 50 # number of classes
 INPUT_SIZE = 224 # 128
 BATCH_SIZE = 32
 NUM_OF_WORKER = 8
-CKPT_DIR = 'ckpt_p1/'
+CKPT_DIR = '../ckpt_p1/'
 NORM_MEAN = (0.485, 0.456, 0.406)
 NORM_STD  = (0.229, 0.224, 0.225)
-
+DEVICE = 'cuda:0' # 'cuda:0', 'cpu' 
 train_transform = transforms.Compose([
     transforms.Resize(INPUT_SIZE),
     transforms.ColorJitter(),
@@ -47,10 +47,13 @@ print('Image tensor in each batch:', images.shape, images.dtype)
 print('Label tensor in each batch:', labels.shape, labels.dtype)
 
 # Use GPU if available, otherwise stick with cpu
-use_cuda = torch.cuda.is_available()
+print("Cuda is available = " + str(torch.cuda.is_available()))
 torch.manual_seed(123)
-device = torch.device("cuda" if use_cuda else "cpu")
+# device = torch.device("cuda" if use_cuda else "cpu")
+device = torch.device(DEVICE)
 print('Device used:', device)
+# print('torch.cuda.current_device() = ' + str(torch.cuda.current_device()))
+# print('torch.cuda.get_device_name(0) = ' + str(torch.cuda.get_device_name(0)))
 
 def save_checkpoint(checkpoint_path, model, optimizer):
     state = {'state_dict': model.state_dict(),
@@ -107,5 +110,6 @@ def test(model):
 
 if __name__ == '__main__':
     vgg16_aug = Vgg16_Aug().to(device)
-    summary(vgg16_aug, (3, INPUT_SIZE, INPUT_SIZE))
-    # train_save(vgg16_aug, 100)
+    # summary(vgg16_aug, (3, INPUT_SIZE, INPUT_SIZE))
+    train_save(vgg16_aug, 100)
+    pass

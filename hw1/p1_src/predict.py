@@ -13,6 +13,7 @@ INPUT_SIZE = 224
 NORM_MEAN = (0.485, 0.456, 0.406)
 NORM_STD  = (0.229, 0.224, 0.225)
 TSNE = False
+DEVICE = "cuda:1"
 if TSNE:
     from sklearn import manifold
 
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 
     # Use GPU if available, otherwise stick with cpu
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda" if use_cuda else "cpu")
+    device = torch.device(DEVICE)
     print('Device used:', device)
 
     # Load model
