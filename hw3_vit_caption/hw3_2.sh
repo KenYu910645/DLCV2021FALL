@@ -1,0 +1,1 @@
+python3 p2_src/test.py --input_dir $1 --output_dir $2

@@ -1,0 +1,2 @@
+python train.py /home/lab530/KenYu/hw3-KenYu910645/hw3_data/p1_data_imagenet_format/ --pretrained --model vit_base_patch16_224 --num-classes 37 --img-size 224 --batch-size 32 --checkpoint-hist 1 --aa v0 --epochs 100 --lr 0.0001
+# python test.py --checkpoint  /home/lab530/KenYu/hw3-KenYu910645/p1_src/output/train/20211209-121641-vit_base_patch16_224-224/model_best.pth.tar --output_path p1_output.csv /home/lab530/KenYu/hw3-KenYu910645/hw3_data/p1_data/val/
